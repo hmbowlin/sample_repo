@@ -30,7 +30,7 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 
 ---
 title: "Simple document"
-output: html_document
+output: github_document
 ---
 
 I'm an R Markdown document! 
@@ -49,3 +49,20 @@ length(samp)
 
 I can take the mean of the sample, too!
 The mean is `r mean(samp)`.
+
+library(tidyverse)
+
+## set seed to ensure reproducibility
+set.seed(1234)
+
+## define data frame containing x and y
+plot_df = tibble(
+  x = rnorm(1000, sd = .5),
+  y = 1 + 2 * x + rnorm(1000)
+)
+
+## histogram of x
+ggplot(plot_df, aes(x = x)) + geom_histogram()
+
+## scatterplot of x and y
+ggplot(plot_df, aes(x = x, y = y)) + geom_point()
